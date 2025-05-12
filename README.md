@@ -26,38 +26,16 @@ A Python-based solution for automatically solving Amazon CAPTCHAs using EasyOCR 
 
 1. Clone this repository:
 ```bash
-- Automatic CAPTCHA image detection and download
-- Advanced image preprocessing for better OCR accuracy
-- EasyOCR integration for text recognition
-- Common OCR error correction
-- Debug output option for development and troubleshooting
-- Manual intervention fallback option
-- Support for multiple solving attempts
-
-## Requirements
-
-- Python 3.7+
-- Selenium
-- EasyOCR
-- OpenCV (cv2)
-- NumPy
-- Pillow
-- Requests
-
-## Installation
-
-1. Clone this repository:
-```bash
 git clone https://github.com/ggfincke/Simple-Amazon-CAPTCHA-Solver.git
 cd Simple-Amazon-CAPTCHA-Solver
 ```
 
 2. Install the required dependencies:
 ```bash
-pip install selenium easyocr opencv-python numpy pillow requests
+pip install -r requirements.txt
 ```
 
-## Usage
+## 💻 Usage
 
 ### Basic Usage
 
@@ -89,24 +67,39 @@ else:
 driver.quit()
 ```
 
-### Advanced Usage with Manual Fallback
+## 🧪 Test Scripts
 
+The repository includes two test scripts to help you get started:
+
+### Selenium Test (`selenium_test.py`)
+A simple script demonstrating how to use the Selenium-based CAPTCHA solver:
 ```python
-# Create solver with manual fallback option
-solver = AmazonCaptchaSolver(output_dir="captcha_output", save_debug_output=True)
-
-# Try to solve CAPTCHA with automatic solving first, then fall back to manual if needed
-solved = solver.solve_captcha_with_fallback(driver, max_attempts=3)
+python selenium_test.py
 ```
 
-## Configuration
+### Playwright Test (`playwright_test.py`)
+A script showing how to use the Playwright-based CAPTCHA solver:
+```python
+python playwright_test.py
+```
+
+Both test scripts:
+- Launch a browser instance
+- Navigate to Amazon's CAPTCHA page
+- Attempt to solve the CAPTCHA
+- Save debug output (if enabled)
+- Clean up resources
+
+These scripts are for testing/showcasing the solver's functionality and can serve as templates for your own implementations.
+
+## ⚙️ Configuration
 
 The `AmazonCaptchaSolver` class accepts the following parameters:
 
 - `output_dir` (str): Directory to save debug output (default: "captcha_failures")
 - `save_debug_output` (bool): Whether to save debug images and screenshots (default: False)
 
-## How It Works
+## 🔧 How It Works
 
 1. **Image Detection**: The solver locates the CAPTCHA image on the page using Selenium.
 2. **Image Preprocessing**: The image undergoes several preprocessing steps:
@@ -119,7 +112,7 @@ The `AmazonCaptchaSolver` class accepts the following parameters:
 4. **Error Correction**: Common OCR errors are corrected using predefined rules.
 5. **Verification**: The solution is submitted and verified.
 
-## Debug Output
+## 🐛 Debug Output
 
 When `save_debug_output` is enabled, the solver saves:
 - Original CAPTCHA image
@@ -127,20 +120,20 @@ When `save_debug_output` is enabled, the solver saves:
 - Screenshots of failed attempts
 - Manual intervention screenshots (if used)
 
-## Limitations
+## ⚠️ Limitations
 
 - Success rate depends on CAPTCHA complexity and image quality
 - May require manual intervention for difficult CAPTCHAs
 - Performance may vary based on system resources
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Feel free to submit a Pull Request.
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Disclaimer
+## ⚠️ Disclaimer
 
 This tool is for educational purposes only. Please use responsibly and in accordance with Amazon's terms of service. 
